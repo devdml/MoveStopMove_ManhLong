@@ -5,9 +5,23 @@ public class Player : Character
     [Header("Player Setup")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Transform skin;
-    [SerializeField] private float playerSpeed;
+
+    private SphereCollider sphereCollider;
+    public float rangePlayer;
+    public float playerSpeed;
 
     private bool isMove;
+
+    private void Awake()
+    {
+        sphereCollider = GetComponent<SphereCollider>();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        sphereCollider.radius = rangePlayer;
+    }
 
     protected override void Update()
     {

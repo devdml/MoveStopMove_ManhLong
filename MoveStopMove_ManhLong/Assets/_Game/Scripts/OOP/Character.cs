@@ -23,13 +23,6 @@ public class Character : MonoBehaviour
     protected virtual void Update()
     {
         GetTarget();
-
-        if (listTarget.Count <= 0)
-        {
-            Debug.Log("3");
-            target = null;
-        }
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -64,7 +57,6 @@ public class Character : MonoBehaviour
             if (listTarget.Count == 0)
             {
                 target = null;
-                Debug.Log("1");
             }
         }
 

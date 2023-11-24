@@ -334,9 +334,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6238163758005916399}
-  - component: {fileID: 7455502847539795798}
   - component: {fileID: 330278985341646699}
+  - component: {fileID: 7455502847539795798}
   - component: {fileID: 7140458356166640985}
+  - component: {fileID: 7923985564639530790}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -360,19 +361,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &7455502847539795798
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8177718214110344117}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 8
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &330278985341646699
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -389,6 +377,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!135 &7455502847539795798
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8177718214110344117}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 8
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7140458356166640985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,4 +411,18 @@ MonoBehaviour:
   target: {fileID: 0}
   rb: {fileID: 330278985341646699}
   skin: {fileID: 4271187174309377702}
+  rangePlayer: 0
   playerSpeed: 10
+--- !u!114 &7923985564639530790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8177718214110344117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae7eb368e3b46b6489bfdeca7617ce5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 0
