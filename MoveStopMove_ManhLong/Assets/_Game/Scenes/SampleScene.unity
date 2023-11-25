@@ -1339,6 +1339,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &783909806 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5233769137099401843, guid: 2cd2325d25855ec46a55623b1aab08ad, type: 3}
+  m_PrefabInstance: {fileID: 1132131452}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &945888985
 GameObject:
   m_ObjectHideFlags: 0
@@ -1694,13 +1699,49 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7923985564639530790, guid: 2cd2325d25855ec46a55623b1aab08ad, type: 3}
+      propertyPath: pointWeapon
+      value: 
+      objectReference: {fileID: 783909806}
+    - target: {fileID: 7923985564639530790, guid: 2cd2325d25855ec46a55623b1aab08ad, type: 3}
       propertyPath: colliderRange
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923985564639530790, guid: 2cd2325d25855ec46a55623b1aab08ad, type: 3}
+      propertyPath: weapons.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7923985564639530790, guid: 2cd2325d25855ec46a55623b1aab08ad, type: 3}
       propertyPath: weaponItemData.Type
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7923985564639530790, guid: 2cd2325d25855ec46a55623b1aab08ad, type: 3}
+      propertyPath: weapons.Array.data[0]
+      value: 
+      objectReference: {fileID: 8218009836956988470, guid: 410287437721a8a46a50952f56144a06, type: 3}
+    - target: {fileID: 7923985564639530790, guid: 2cd2325d25855ec46a55623b1aab08ad, type: 3}
+      propertyPath: weapons.Array.data[1]
+      value: 
+      objectReference: {fileID: 6838171930741027040, guid: c8c28447a737ea440ac698bf35850e51, type: 3}
+    - target: {fileID: 7923985564639530790, guid: 2cd2325d25855ec46a55623b1aab08ad, type: 3}
+      propertyPath: weapons.Array.data[2]
+      value: 
+      objectReference: {fileID: 8203455571588348822, guid: 3b4bacbeaa336a445ae757afec8ca730, type: 3}
+    - target: {fileID: 7923985564639530790, guid: 2cd2325d25855ec46a55623b1aab08ad, type: 3}
+      propertyPath: weaponsView.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923985564639530790, guid: 2cd2325d25855ec46a55623b1aab08ad, type: 3}
+      propertyPath: weaponsView.Array.data[0]
+      value: 
+      objectReference: {fileID: 8218009836956988470, guid: 410287437721a8a46a50952f56144a06, type: 3}
+    - target: {fileID: 7923985564639530790, guid: 2cd2325d25855ec46a55623b1aab08ad, type: 3}
+      propertyPath: weaponsView.Array.data[1]
+      value: 
+      objectReference: {fileID: 6838171930741027040, guid: c8c28447a737ea440ac698bf35850e51, type: 3}
+    - target: {fileID: 7923985564639530790, guid: 2cd2325d25855ec46a55623b1aab08ad, type: 3}
+      propertyPath: weaponsView.Array.data[2]
+      value: 
+      objectReference: {fileID: 8203455571588348822, guid: 3b4bacbeaa336a445ae757afec8ca730, type: 3}
     - target: {fileID: 7923985564639530790, guid: 2cd2325d25855ec46a55623b1aab08ad, type: 3}
       propertyPath: weaponItemData.rangeWeapon
       value: 10
@@ -2730,7 +2771,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1752695970}
-  m_LocalRotation: {x: 0.27913588, y: 0.12559606, z: -0.036853544, w: 0.95128894}
+  m_LocalRotation: {x: 0.27913588, y: 0.12559609, z: -0.036853552, w: 0.95128894}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

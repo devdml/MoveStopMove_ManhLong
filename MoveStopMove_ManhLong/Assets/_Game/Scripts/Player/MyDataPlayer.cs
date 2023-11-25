@@ -1,11 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MyDataPlayer : MonoBehaviour
 {
+    public List<GameObject> weapons = new List<GameObject>();
+    public Transform pointWeapon;
+
     public WeaponType weaponType;
     private Player player;
     private PlayerData playerData;
-    private Transform weaponView;
 
     private void Awake()
     {
@@ -37,6 +40,14 @@ public class MyDataPlayer : MonoBehaviour
         WeaponItemData weaponItemData = DataManager.Instance.GetWeaponData(weaponType);
         playerData.WeaponType = weaponType;
         player.rangePlayer = weaponItemData.rangeWeapon;
-        
+
+        int index = weapons.Count;
+        for (int i = 0; i < index; i++)
+        {
+            if (weapons[i] == DataManager.Instance.weaponDataOS)
+            {
+                Instantiate(weapons[i], pointWeapon);
+            }
+        }
     }
 }

@@ -15,13 +15,13 @@ MonoBehaviour:
   weapons:
   - Type: 0
     price: 0
-    speedWeapon: 0
-    rangeWeapon: 0
-  - Type: 0
+    speedWeapon: 1
+    rangeWeapon: 7
+  - Type: 1
     price: 0
-    speedWeapon: 0
-    rangeWeapon: 0
-  - Type: 0
+    speedWeapon: 1.5
+    rangeWeapon: 8
+  - Type: 2
     price: 0
-    speedWeapon: 0
-    rangeWeapon: 0
+    speedWeapon: 2
+    rangeWeapon: 9
