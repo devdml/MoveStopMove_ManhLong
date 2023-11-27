@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class MyDataPlayer : MonoBehaviour
 {
-    public List<GameObject> weapons = new List<GameObject>();
+    public List<WeaponView> weaponList = new List<WeaponView>();
     public Transform pointWeapon;
+    public Transform holderWeapons;
 
     public WeaponType weaponType;
     private Player player;
@@ -20,6 +21,10 @@ public class MyDataPlayer : MonoBehaviour
         GetPlayerData();
         SavePlayerData();
         GetWeaponData();
+        if (holderWeapons.childCount > 9)
+        {
+            Debug.Log(holderWeapons.childCount.ToString());
+        }
     }
 
     [ContextMenu("GetPlayerData")]
@@ -41,12 +46,11 @@ public class MyDataPlayer : MonoBehaviour
         playerData.WeaponType = weaponType;
         player.rangePlayer = weaponItemData.rangeWeapon;
 
-        int index = weapons.Count;
-        for (int i = 0; i < index; i++)
+        for (int i = 0; i < weaponList.Count; i++)
         {
-            if (weapons[i] == DataManager.Instance.weaponDataOS)
+            if (weaponType == weaponList[i].WeaponType)
             {
-                Instantiate(weapons[i], pointWeapon);
+                Instantiate(weaponList[i], pointWeapon);
             }
         }
     }

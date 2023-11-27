@@ -175,8 +175,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7423160073779971599}
+  - component: {fileID: -1255132356270012342}
   m_Layer: 0
-  m_Name: vukhi_3
+  m_Name: vukhi_3h
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,3 +200,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-1255132356270012342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8203455571588348822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8085142f6176d324185bd28a3adcb620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponType: 2
+  bulletList: []
+  bulletPrefab: {fileID: 8203455571588348822, guid: a5cf064cab0844b4fb19c0c241f351a3, type: 3}
+  myDataPlayer: {fileID: 0}

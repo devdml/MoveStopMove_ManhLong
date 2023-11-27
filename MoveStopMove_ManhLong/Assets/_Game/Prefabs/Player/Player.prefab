@@ -179,6 +179,37 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &5092362531180348471
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4466061224559491120}
+  m_Layer: 0
+  m_Name: Bullet Prefabs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4466061224559491120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5092362531180348471}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6238163758005916399}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7338263184679502036
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,9 +386,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4271187174309377702}
+  - {fileID: 4466061224559491120}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -388,7 +420,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7140458356166640985
 MonoBehaviour:
@@ -425,4 +457,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae7eb368e3b46b6489bfdeca7617ce5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 0
+  weapon:
+  - {fileID: 8669555819259222067, guid: 410287437721a8a46a50952f56144a06, type: 3}
+  - {fileID: -4761730405058646937, guid: c8c28447a737ea440ac698bf35850e51, type: 3}
+  - {fileID: -1255132356270012342, guid: 3b4bacbeaa336a445ae757afec8ca730, type: 3}
+  pointWeapon: {fileID: 5233769137099401843}
+  weaponType: 1

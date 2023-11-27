@@ -6,10 +6,10 @@ public class Player : Character
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Transform skin;
 
-    private SphereCollider sphereCollider;
     public float rangePlayer;
     public float playerSpeed;
 
+    private SphereCollider sphereCollider;
     private bool isMove;
 
     private void Awake()
