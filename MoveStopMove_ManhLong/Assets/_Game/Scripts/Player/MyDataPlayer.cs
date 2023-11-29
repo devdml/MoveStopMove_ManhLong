@@ -15,16 +15,11 @@ public class MyDataPlayer : MonoBehaviour
     {
         player = GetComponent<Player>();
     }
-
-    private void Start()
+    private void OnEnable()
     {
         GetPlayerData();
         SavePlayerData();
         GetWeaponData();
-        if (holderWeapons.childCount > 9)
-        {
-            Debug.Log(holderWeapons.childCount.ToString());
-        }
     }
 
     [ContextMenu("GetPlayerData")]

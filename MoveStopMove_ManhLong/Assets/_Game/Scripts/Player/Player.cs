@@ -9,7 +9,7 @@ public class Player : Character
     public float rangePlayer;
     public float playerSpeed;
 
-    private SphereCollider sphereCollider;
+    public SphereCollider sphereCollider;
     private bool isMove;
 
     private void Awake()
@@ -32,6 +32,7 @@ public class Player : Character
         if (!isMove && target != null)
         {
             RotateToTarget();
+            ChangeAnim(Constant.ANIM_ATTACK);
             ShootTimer();
         }
     }
@@ -44,12 +45,14 @@ public class Player : Character
             rb.velocity = JoystickController.direct * playerSpeed + rb.velocity.y * Vector3.up;
             if (JoystickController.direct != Vector3.zero)
             {
+                ChangeAnim(Constant.ANIM_RUN);
                 skin.forward = JoystickController.direct;
             }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
+            ChangeAnim(Constant.ANIM_IDLE);
             rb.velocity = Vector3.zero;
             isMove = false;
         }

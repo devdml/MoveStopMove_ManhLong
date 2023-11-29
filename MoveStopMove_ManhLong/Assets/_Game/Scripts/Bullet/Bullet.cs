@@ -18,12 +18,12 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        SetTarget();
+        Shoot();
     }
 
-    private void SetTarget()
+    private void Shoot()
     {
-        Vector3 dir = target.position - transform.position;
+        Vector3 dir = (target.position - transform.position).normalized;
         dir.y = 0f;
         float speedFrame = moveSpeed * Time.deltaTime;
 
@@ -33,6 +33,7 @@ public class Bullet : MonoBehaviour
             return;
         }
         transform.Translate(dir.normalized * speedFrame, Space.World);
+        
     }
 
 

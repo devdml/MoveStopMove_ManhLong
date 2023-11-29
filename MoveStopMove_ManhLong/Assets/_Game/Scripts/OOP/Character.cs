@@ -10,6 +10,14 @@ public class Character : MonoBehaviour
     [SerializeField] private Transform skinRotate;
     [SerializeField] private Transform pointShooting;
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Animator anim;
+
+
+    protected string currentAnimName = Constant.ANIM_IDLE;
+    public bool isIdle;
+    public bool isAttack = false;
+    public bool isDead = false;
+    public bool isOut;
 
     public GameObject target;
 
@@ -17,12 +25,27 @@ public class Character : MonoBehaviour
 
     protected virtual void Start()
     {
-
+        OnInit();
     }
 
     protected virtual void Update()
     {
-        GetTarget();
+        if (isOut == true)
+        {
+            GetTarget();
+        } else
+        {
+            target = null;
+            GetTarget();
+        }
+    }
+
+    public virtual void OnInit()
+    {
+        isDead = false;
+        isIdle = true;
+        isAttack = false;
+        ChangeAnim(Constant.ANIM_IDLE);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,6 +53,7 @@ public class Character : MonoBehaviour
         if (other.CompareTag(Constant.TAG_CHARACTER))
         {
             listTarget.Add(other.gameObject);
+            isOut = true;
         }
     }
 
@@ -38,6 +62,7 @@ public class Character : MonoBehaviour
         if (other.CompareTag(Constant.TAG_CHARACTER))
         {
             listTarget.Remove(other.gameObject);
+            isOut = false;
         }
     }
 
@@ -106,7 +131,7 @@ public class Character : MonoBehaviour
 
     }
 
-    private void Shoot()
+    public void Shoot()
     {
         GameObject bulletGo = Instantiate(bulletPrefab, pointShooting.position, pointShooting.rotation);
         Bullet bullet = bulletGo.GetComponent<Bullet>();
@@ -118,6 +143,21 @@ public class Character : MonoBehaviour
                 bullet.Seek(target.transform);
             }
         }
+    }
+
+    public void ChangeAnim(string animName)
+    {
+        if (currentAnimName != animName)
+        {
+            anim.ResetTrigger(currentAnimName);
+            currentAnimName = animName;
+            anim.SetTrigger(currentAnimName);
+        }
+    }
+
+    public void ResetAttack()
+    {
+        isAttack = false;
     }
 
     private void OnDrawGizmosSelected()
