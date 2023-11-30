@@ -1,3 +1,5 @@
+using Lean.Pool;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,15 +11,14 @@ public class Character : MonoBehaviour
     [SerializeField] private List<GameObject> listTarget = new List<GameObject>();
     [SerializeField] private Transform skinRotate;
     [SerializeField] private Transform pointShooting;
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Bullet bulletPrefab;
     [SerializeField] private Animator anim;
 
-
+    protected Bullet bulletOjb;
     protected string currentAnimName = Constant.ANIM_IDLE;
-    public bool isIdle;
-    public bool isAttack = false;
-    public bool isDead = false;
+    protected Vector3 dir;
     public bool isOut;
+    public bool isAttack;
 
     public GameObject target;
 
@@ -42,10 +43,22 @@ public class Character : MonoBehaviour
 
     public virtual void OnInit()
     {
-        isDead = false;
-        isIdle = true;
         isAttack = false;
         ChangeAnim(Constant.ANIM_IDLE);
+    }
+
+    private void SpawnBullet()
+    {
+        if (target != null)
+        {
+            dir = target.transform.position - transform.position;
+
+            Bullet spawnBullet = LeanPool.Spawn(bulletPrefab, pointShooting.position, pointShooting.rotation);
+            bulletOjb = spawnBullet.GetComponent<Bullet>();
+            bulletOjb.SeekAttacker(this);
+            bulletOjb.SeekDirec(dir);
+            bulletOjb.OnDespawn(1f);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -94,7 +107,7 @@ public class Character : MonoBehaviour
     {
         if (fireCountdown <= 0)
         {
-            Shoot();
+            SpawnBullet();
             fireCountdown = 1f / fireRate;
         }
 
@@ -131,33 +144,21 @@ public class Character : MonoBehaviour
 
     }
 
-    public void Shoot()
-    {
-        GameObject bulletGo = Instantiate(bulletPrefab, pointShooting.position, pointShooting.rotation);
-        Bullet bullet = bulletGo.GetComponent<Bullet>();
-
-        if (bullet != null)
-        {
-            if (target != null)
-            {
-                bullet.Seek(target.transform);
-            }
-        }
-    }
-
     public void ChangeAnim(string animName)
     {
         if (currentAnimName != animName)
         {
+            Debug.Log(animName);
             anim.ResetTrigger(currentAnimName);
             currentAnimName = animName;
             anim.SetTrigger(currentAnimName);
         }
     }
 
-    public void ResetAttack()
+    public IEnumerator WaitForFunction()
     {
-        isAttack = false;
+        yield return new WaitForSeconds(2);
+        ChangeAnim(Constant.ANIM_NULL);
     }
 
     private void OnDrawGizmosSelected()

@@ -31,9 +31,11 @@ public class Player : Character
 
         if (!isMove && target != null)
         {
+            isAttack = true;
             RotateToTarget();
-            ChangeAnim(Constant.ANIM_ATTACK);
             ShootTimer();
+            ChangeAnim(Constant.ANIM_ATTACK);
+            StartCoroutine(WaitForFunction());
         }
     }
 
@@ -42,6 +44,7 @@ public class Player : Character
         if (Input.GetMouseButton(0))
         {
             isMove = true;
+            isAttack = false;
             rb.velocity = JoystickController.direct * playerSpeed + rb.velocity.y * Vector3.up;
             if (JoystickController.direct != Vector3.zero)
             {
@@ -52,7 +55,10 @@ public class Player : Character
 
         if (Input.GetMouseButtonUp(0))
         {
-            ChangeAnim(Constant.ANIM_IDLE);
+            if (target == null && isAttack == false)
+            {
+                ChangeAnim(Constant.ANIM_IDLE);
+            }
             rb.velocity = Vector3.zero;
             isMove = false;
         }

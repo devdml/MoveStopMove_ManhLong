@@ -1,45 +1,45 @@
+using Lean.Pool;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 30f;
-    private Transform target;
+    [SerializeField] private float speed;
+    [SerializeField] private Rigidbody rb;
 
-    public void Seek(Transform _target)
+    private Character attacker;
+    private Vector3 dir;
+
+    private void Update()
     {
-        target = _target;
+        rb.velocity = dir.normalized * speed;
     }
 
-    private void FixedUpdate()
+    public void SeekDirec(Vector3 dir)
     {
-        if (target == null)
+        this.dir = dir;
+    }
+
+    public void SeekAttacker(Character attacker)
+    {
+        this.attacker = attacker;
+    }
+
+    public void OnDespawn(float timeDespawn)
+    {
+        LeanPool.Despawn(gameObject, timeDespawn);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag(Constant.TAG_CHARACTER))
         {
-            Destroy(gameObject);
-            return;
+            Character character = other.GetComponent<Character>();
+
+            if (attacker != character)
+            {
+                LeanPool.Despawn(gameObject);
+            }
         }
-
-        Shoot();
-    }
-
-    private void Shoot()
-    {
-        Vector3 dir = (target.position - transform.position).normalized;
-        dir.y = 0f;
-        float speedFrame = moveSpeed * Time.deltaTime;
-
-        if (dir.magnitude <= speedFrame)
-        {
-            HitTarget();
-            return;
-        }
-        transform.Translate(dir.normalized * speedFrame, Space.World);
-        
-    }
-
-
-    private void HitTarget()
-    {
-        //Destroy(target.gameObject);
-        Destroy(gameObject);
     }
 }
