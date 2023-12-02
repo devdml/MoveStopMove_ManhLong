@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 [Serializable]
 public class WeaponItemData
@@ -7,4 +8,5 @@ public class WeaponItemData
     public int price;
     public float speedWeapon;
     public float rangeWeapon;
+    public Bullet bulletPrefab;
 }

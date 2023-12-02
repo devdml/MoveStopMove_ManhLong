@@ -6,9 +6,16 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody rb;
+    public WeaponType Type;
 
-    private Character attacker;
+
+    public Character character;
     private Vector3 dir;
+
+    private void Awake()
+    {
+        character = GetComponent<Character>();
+    }
 
     private void Update()
     {
@@ -20,9 +27,9 @@ public class Bullet : MonoBehaviour
         this.dir = dir;
     }
 
-    public void SeekAttacker(Character attacker)
+    public void SeekAttacker(Character character)
     {
-        this.attacker = attacker;
+        this.character = character;
     }
 
     public void OnDespawn(float timeDespawn)
@@ -36,7 +43,7 @@ public class Bullet : MonoBehaviour
         {
             Character character = other.GetComponent<Character>();
 
-            if (attacker != character)
+            if (this.character != character)
             {
                 LeanPool.Despawn(gameObject);
             }

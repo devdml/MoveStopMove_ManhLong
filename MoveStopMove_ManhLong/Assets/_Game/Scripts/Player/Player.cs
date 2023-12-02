@@ -12,8 +12,9 @@ public class Player : Character
     public SphereCollider sphereCollider;
     private bool isMove;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         sphereCollider = GetComponent<SphereCollider>();
     }
 
@@ -34,8 +35,6 @@ public class Player : Character
             isAttack = true;
             RotateToTarget();
             ShootTimer();
-            ChangeAnim(Constant.ANIM_ATTACK);
-            StartCoroutine(WaitForFunction());
         }
     }
 
@@ -55,10 +54,7 @@ public class Player : Character
 
         if (Input.GetMouseButtonUp(0))
         {
-            if (target == null && isAttack == false)
-            {
-                ChangeAnim(Constant.ANIM_IDLE);
-            }
+            ChangeAnim(Constant.ANIM_IDLE);
             rb.velocity = Vector3.zero;
             isMove = false;
         }

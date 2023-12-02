@@ -1,5 +1,4 @@
 using Lean.Pool;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,22 +10,32 @@ public class Character : MonoBehaviour
     [SerializeField] private List<GameObject> listTarget = new List<GameObject>();
     [SerializeField] private Transform skinRotate;
     [SerializeField] private Transform pointShooting;
-    [SerializeField] private Bullet bulletPrefab;
     [SerializeField] private Animator anim;
+    [SerializeField] private OnDeath onDeath;
+    [SerializeField] private WeaponItemData weaponItemData;
 
     protected Bullet bulletOjb;
     protected string currentAnimName = Constant.ANIM_IDLE;
     protected Vector3 dir;
+    public Bullet bulletPrefab;
     public bool isOut;
     public bool isAttack;
+    public bool isDead;
 
     public GameObject target;
 
     private float fireCountdown = 0f;
 
+
+    protected virtual void Awake()
+    {
+        onDeath = GetComponent<OnDeath>();
+    }
+
     protected virtual void Start()
     {
         OnInit();
+        
     }
 
     protected virtual void Update()
@@ -34,7 +43,8 @@ public class Character : MonoBehaviour
         if (isOut == true)
         {
             GetTarget();
-        } else
+        }
+        else
         {
             target = null;
             GetTarget();
@@ -44,6 +54,7 @@ public class Character : MonoBehaviour
     public virtual void OnInit()
     {
         isAttack = false;
+        isDead = false;
         ChangeAnim(Constant.ANIM_IDLE);
     }
 
@@ -55,8 +66,8 @@ public class Character : MonoBehaviour
 
             Bullet spawnBullet = LeanPool.Spawn(bulletPrefab, pointShooting.position, pointShooting.rotation);
             bulletOjb = spawnBullet.GetComponent<Bullet>();
-            bulletOjb.SeekAttacker(this);
             bulletOjb.SeekDirec(dir);
+            bulletOjb.SeekAttacker(this);
             bulletOjb.OnDespawn(1f);
         }
     }
@@ -108,6 +119,7 @@ public class Character : MonoBehaviour
         if (fireCountdown <= 0)
         {
             SpawnBullet();
+            Attack();
             fireCountdown = 1f / fireRate;
         }
 
@@ -155,11 +167,20 @@ public class Character : MonoBehaviour
         }
     }
 
-    public IEnumerator WaitForFunction()
+    private void Attack()
     {
-        yield return new WaitForSeconds(2);
-        ChangeAnim(Constant.ANIM_NULL);
+        isAttack = true;
+        ChangeAnim(Constant.ANIM_ATTACK);
+        Invoke(nameof(ResetAttack), 0.7f);
     }
+
+    private void ResetAttack()
+    {
+        isAttack = false;
+        ChangeAnim(Constant.ANIM_IDLE);
+    }
+
+   
 
     private void OnDrawGizmosSelected()
     {

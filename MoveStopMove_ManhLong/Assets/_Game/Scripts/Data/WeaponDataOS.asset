@@ -17,11 +17,14 @@ MonoBehaviour:
     price: 0
     speedWeapon: 1
     rangeWeapon: 7
+    bulletPrefab: {fileID: 8618215461186024162, guid: 91dfa2d7a9aa86c40a7da003bb64f530, type: 3}
   - Type: 1
     price: 0
     speedWeapon: 1.5
     rangeWeapon: 8
+    bulletPrefab: {fileID: 1910082812334194638, guid: 54edcfc4da740e84faea7f98cd994c1f, type: 3}
   - Type: 2
     price: 0
     speedWeapon: 2
     rangeWeapon: 9
+    bulletPrefab: {fileID: 2231219986299186580, guid: 56a0b3ed8fafcd149a26f83774ad26e8, type: 3}

@@ -5,8 +5,7 @@ public class MyDataPlayer : MonoBehaviour
 {
     public List<WeaponView> weaponList = new List<WeaponView>();
     public Transform pointWeapon;
-    public Transform holderWeapons;
-
+    private Character character;
     public WeaponType weaponType;
     private Player player;
     private PlayerData playerData;
@@ -14,6 +13,7 @@ public class MyDataPlayer : MonoBehaviour
     private void Awake()
     {
         player = GetComponent<Player>();
+        character = GetComponent<Character>();
     }
     private void OnEnable()
     {
@@ -40,6 +40,7 @@ public class MyDataPlayer : MonoBehaviour
         WeaponItemData weaponItemData = DataManager.Instance.GetWeaponData(weaponType);
         playerData.WeaponType = weaponType;
         player.rangePlayer = weaponItemData.rangeWeapon;
+        character.bulletPrefab = weaponItemData.bulletPrefab;
 
         for (int i = 0; i < weaponList.Count; i++)
         {

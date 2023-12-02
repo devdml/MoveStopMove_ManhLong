@@ -9,7 +9,7 @@ public class WeaponDataOS : ScriptableObject
 
 public enum WeaponType
 {
-    Knife = 0,
-    Hammer = 1,
-    Boomerang = 2,
+    axe_0 = 0,
+    axe_1 = 1,
+    candy_1 = 2,
 }
