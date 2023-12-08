@@ -5,22 +5,25 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     [Header("Character Attributes")]
-    [SerializeField] private float range = 8f;
+    [SerializeField] public float range = 8f;
     [SerializeField] protected float fireRate = 1f;
-    [SerializeField] private List<GameObject> listTarget = new List<GameObject>();
     [SerializeField] private Transform skinRotate;
     [SerializeField] private Transform pointShooting;
     [SerializeField] private Animator anim;
-    [SerializeField] private OnDeath onDeath;
     [SerializeField] private WeaponItemData weaponItemData;
 
+    public GetColliderRadius colliderRadius;
+    public SphereCollider sphereCollider;
+    public float moveSpeed;
+    public GameObject offWeaponView;
+    public List<GameObject> listTarget = new List<GameObject>();
     protected Bullet bulletOjb;
     protected string currentAnimName = Constant.ANIM_IDLE;
     protected Vector3 dir;
     public Bullet bulletPrefab;
     public bool isOut;
     public bool isAttack;
-    public bool isDead;
+    public bool isDeath;
 
     public GameObject target;
 
@@ -29,33 +32,38 @@ public class Character : MonoBehaviour
 
     protected virtual void Awake()
     {
-        onDeath = GetComponent<OnDeath>();
+        GameManager.Instance.ChangeStage(GameState.MainMenu);
     }
 
     protected virtual void Start()
     {
         OnInit();
-        
     }
 
     protected virtual void Update()
     {
-        if (isOut == true)
+        if (GameManager.Instance.IsStage(GameState.GamePlay))
         {
-            GetTarget();
-        }
-        else
-        {
-            target = null;
-            GetTarget();
+            if (isOut == true)
+            {
+                GetTarget();
+            }
+            else
+            {
+                target = null;
+                GetTarget();
+            }
         }
     }
 
     public virtual void OnInit()
     {
         isAttack = false;
-        isDead = false;
+        isDeath = false;
         ChangeAnim(Constant.ANIM_IDLE);
+        //colliderRadius.sphereCollider = GetComponent<GetColliderRadius>().sphereCollider;
+        //sphereCollider = colliderRadius.sphereCollider;
+        //sphereCollider.radius = range;
     }
 
     private void SpawnBullet()
@@ -68,7 +76,7 @@ public class Character : MonoBehaviour
             bulletOjb = spawnBullet.GetComponent<Bullet>();
             bulletOjb.SeekDirec(dir);
             bulletOjb.SeekAttacker(this);
-            bulletOjb.OnDespawn(1f);
+            bulletOjb.OnDespawn(1.5f);
         }
     }
 
@@ -76,8 +84,12 @@ public class Character : MonoBehaviour
     {
         if (other.CompareTag(Constant.TAG_CHARACTER))
         {
-            listTarget.Add(other.gameObject);
-            isOut = true;
+            Character character = other.GetComponent<Character>();
+            if (character.isDeath == false)
+            {
+                listTarget.Add(other.gameObject);
+                isOut = true;
+            }
         }
     }
 
@@ -160,7 +172,6 @@ public class Character : MonoBehaviour
     {
         if (currentAnimName != animName)
         {
-            Debug.Log(animName);
             anim.ResetTrigger(currentAnimName);
             currentAnimName = animName;
             anim.SetTrigger(currentAnimName);
@@ -170,6 +181,7 @@ public class Character : MonoBehaviour
     private void Attack()
     {
         isAttack = true;
+        offWeaponView.SetActive(false);
         ChangeAnim(Constant.ANIM_ATTACK);
         Invoke(nameof(ResetAttack), 0.7f);
     }
@@ -177,10 +189,11 @@ public class Character : MonoBehaviour
     private void ResetAttack()
     {
         isAttack = false;
+        offWeaponView.SetActive(true);
         ChangeAnim(Constant.ANIM_IDLE);
     }
 
-   
+
 
     private void OnDrawGizmosSelected()
     {

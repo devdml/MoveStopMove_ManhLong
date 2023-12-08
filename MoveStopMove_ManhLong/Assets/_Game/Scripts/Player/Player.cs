@@ -6,35 +6,33 @@ public class Player : Character
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Transform skin;
 
-    public float rangePlayer;
-    public float playerSpeed;
-
-    public SphereCollider sphereCollider;
     private bool isMove;
 
     protected override void Awake()
     {
         base.Awake();
-        sphereCollider = GetComponent<SphereCollider>();
     }
 
     protected override void Start()
     {
         base.Start();
-        sphereCollider.radius = rangePlayer;
+      
     }
 
     protected override void Update()
     {
-        Joystick();
-
-        base.Update();
-
-        if (!isMove && target != null)
+        if (GameManager.Instance.IsStage(GameState.GamePlay))
         {
-            isAttack = true;
-            RotateToTarget();
-            ShootTimer();
+            Joystick();
+
+            base.Update();
+
+            if (!isMove && target != null)
+            {
+                isAttack = true;
+                RotateToTarget();
+                ShootTimer();
+            }
         }
     }
 
@@ -44,7 +42,7 @@ public class Player : Character
         {
             isMove = true;
             isAttack = false;
-            rb.velocity = JoystickController.direct * playerSpeed + rb.velocity.y * Vector3.up;
+            rb.velocity = JoystickController.direct * moveSpeed + rb.velocity.y * Vector3.up;
             if (JoystickController.direct != Vector3.zero)
             {
                 ChangeAnim(Constant.ANIM_RUN);
@@ -59,5 +57,4 @@ public class Player : Character
             isMove = false;
         }
     }
-
 }

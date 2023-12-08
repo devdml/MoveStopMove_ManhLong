@@ -4,17 +4,21 @@ using UnityEngine.AI;
 public class WalkState : IState<Enemy>
 {
     private float timer;
-    Vector3 newPos;
+    public Vector3 newPos;
+
     public void OnEnter(Enemy t)
     {
         timer = t.wanderTimer;
-        t.agent.speed = 10f;
+        t.agent.speed = 7f;
+        t.agent.isStopped = false;
     }
 
     public void OnExcute(Enemy t)
     {
         if (t.target != null)
         {
+            t.ChangeAnim(Constant.ANIM_IDLE);
+            t.agent.isStopped = true;
             t.agent.speed = 0;
             t.ChangeState(new AttackState());
         }
@@ -27,8 +31,18 @@ public class WalkState : IState<Enemy>
                 newPos = RandomNavSphere(t.transform.position, t.wanderRadius, -1);
                 t.agent.SetDestination(newPos);
                 timer = 0;
+
             }
         }
+
+        if (Vector3.Distance(t.agent.transform.position, newPos) < 1.1f)
+        {
+            t.ChangeAnim(Constant.ANIM_IDLE);
+        } else
+        {
+            t.ChangeAnim(Constant.ANIM_RUN);
+        }
+
     }
 
     public void OnExit(Enemy t)
@@ -48,4 +62,5 @@ public class WalkState : IState<Enemy>
 
         return navHit.position;
     }
+
 }

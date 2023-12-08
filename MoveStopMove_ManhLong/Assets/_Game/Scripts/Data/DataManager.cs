@@ -7,6 +7,12 @@ public class DataManager : Singleton<DataManager>
 
     string userPlayerDataKey = "userPlayerDataKey";
 
+
+    private void Start()
+    {
+        Init();
+    }
+
     public void Init()
     {
         playerData = GetPlayerData();

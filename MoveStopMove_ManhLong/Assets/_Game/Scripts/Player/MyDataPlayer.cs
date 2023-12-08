@@ -7,19 +7,16 @@ public class MyDataPlayer : MonoBehaviour
     public Transform pointWeapon;
     private Character character;
     public WeaponType weaponType;
-    private Player player;
     private PlayerData playerData;
 
     private void Awake()
     {
-        player = GetComponent<Player>();
         character = GetComponent<Character>();
     }
     private void OnEnable()
     {
         GetPlayerData();
-        SavePlayerData();
-        GetWeaponData();
+        SetDataPlayer();
     }
 
     [ContextMenu("GetPlayerData")]
@@ -31,20 +28,21 @@ public class MyDataPlayer : MonoBehaviour
     [ContextMenu("SavePlayerData")]
     public void SavePlayerData()
     {
-        PlayerData newPlayerData = new PlayerData(weaponType, player.playerSpeed, player.rangePlayer);
+        PlayerData newPlayerData = new PlayerData(weaponType, character.moveSpeed, character.range);
         DataManager.Instance.SavePlayerData(newPlayerData);
     }
 
-    public void GetWeaponData()
+    public void SetDataPlayer()
     {
         WeaponItemData weaponItemData = DataManager.Instance.GetWeaponData(weaponType);
+
         playerData.WeaponType = weaponType;
-        player.rangePlayer = weaponItemData.rangeWeapon;
+        character.range = weaponItemData.rangeWeapon;
         character.bulletPrefab = weaponItemData.bulletPrefab;
 
         for (int i = 0; i < weaponList.Count; i++)
         {
-            if (weaponType == weaponList[i].WeaponType)
+            if (weaponType == weaponList[i].weaponType)
             {
                 Instantiate(weaponList[i], pointWeapon);
             }

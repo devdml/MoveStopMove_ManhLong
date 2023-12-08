@@ -8,8 +8,8 @@ public class Enemy : Character
     public Transform skin;
     public float wanderTimer = 5;
     public float wanderRadius;
-
     private IState<Enemy> currentState;
+    
 
     void OnEnable()
     {
@@ -19,19 +19,26 @@ public class Enemy : Character
     protected override void Start()
     {
         base.Start();
-
+        moveSpeed = agent.speed;
         ChangeState(new WalkState());
     }
 
     protected override void Update()
     {
-        base.Update();
-
-        if (currentState != null)
+        if (GameManager.Instance.IsStage(GameState.GamePlay))
         {
-            currentState.OnExcute(this);
-        }
+            if (isDeath == true)
+            {
+                ChangeAnim(Constant.ANIM_DEAD);
+                return;
+            }
+            base.Update();
 
+            if (currentState != null)
+            {
+                currentState.OnExcute(this);
+            }
+        }
     }
 
     public void ChangeState(IState<Enemy> state)
@@ -59,4 +66,6 @@ public class Enemy : Character
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, wanderRadius);
     }
+
+   
 }

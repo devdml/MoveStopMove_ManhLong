@@ -109,13 +109,13 @@ public class OffScreenIndicator : MonoBehaviour
             if(indicator.Type != type)
             {
                 indicator.Activate(false);
-                indicator = type == IndicatorType.BOX ? BoxObjectPool.current.GetPooledObject() : ArrowObjectPool.current.GetPooledObject();
+                indicator = type == IndicatorType.BOX ? BoxObjectPool.index.GetPooledObject() : ArrowObjectPool.index.GetPooledObject();
                 indicator.Activate(true); // Sets the indicator as active.
             }
         }
         else
         {
-            indicator = type == IndicatorType.BOX ? BoxObjectPool.current.GetPooledObject() : ArrowObjectPool.current.GetPooledObject();
+            indicator = type == IndicatorType.BOX ? BoxObjectPool.index.GetPooledObject() : ArrowObjectPool.index.GetPooledObject();
             indicator.Activate(true); // Sets the indicator as active.
         }
         return indicator;

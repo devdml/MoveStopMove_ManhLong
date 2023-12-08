@@ -9,4 +9,5 @@ public class WeaponItemData
     public float speedWeapon;
     public float rangeWeapon;
     public Bullet bulletPrefab;
+    public WeaponView weaponSkin;
 }

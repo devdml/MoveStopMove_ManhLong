@@ -41,11 +41,15 @@ public class Bullet : MonoBehaviour
     {
         if(other.CompareTag(Constant.TAG_CHARACTER))
         {
-            Character character = other.GetComponent<Character>();
+            Character charc = other.GetComponent<Character>();
 
-            if (this.character != character)
+            if (this.character != charc)
             {
                 LeanPool.Despawn(gameObject);
+                charc.isDeath = true;
+                charc.ChangeAnim(Constant.ANIM_DEAD);
+                character.listTarget.Remove(character.target);
+                character.target = null;
             }
         }
     }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class JoystickController : MonoBehaviour
@@ -26,7 +24,10 @@ public class JoystickController : MonoBehaviour
 
     void Update()
     {
-        Joystick();
+        if (GameManager.Instance.IsStage(GameState.GamePlay))
+        {
+            Joystick();
+        }
     }
 
     private void Joystick()
@@ -48,7 +49,7 @@ public class JoystickController : MonoBehaviour
             direct.y = 0;
         }
 
-        if(Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))
         {
             joystickPanel.SetActive(false);
             direct = Vector3.zero;

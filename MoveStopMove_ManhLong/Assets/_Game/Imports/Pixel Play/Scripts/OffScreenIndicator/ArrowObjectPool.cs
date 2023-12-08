@@ -3,7 +3,7 @@ using UnityEngine;
 
 class ArrowObjectPool : MonoBehaviour
 {
-    public static ArrowObjectPool current;
+    public static ArrowObjectPool index;
 
     [Tooltip("Assign the arrow prefab.")]
     public Indicator pooledObject;
@@ -16,7 +16,7 @@ class ArrowObjectPool : MonoBehaviour
 
     void Awake()
     {
-        current = this;
+        index = this;
     }
 
     void Start()

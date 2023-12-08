@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BoxObjectPool : MonoBehaviour
 {
-    public static BoxObjectPool current;
+    public static BoxObjectPool index;
 
     [Tooltip("Assign the box prefab.")]
     public Indicator pooledObject;
@@ -16,7 +16,7 @@ public class BoxObjectPool : MonoBehaviour
 
     void Awake()
     {
-        current = this;
+        index = this;
     }
 
     void Start()

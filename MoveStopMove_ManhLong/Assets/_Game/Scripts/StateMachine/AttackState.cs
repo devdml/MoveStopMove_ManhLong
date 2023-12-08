@@ -11,7 +11,7 @@ public class AttackState : IState<Enemy>
         {
             if (t.target == null)
             {
-                
+                t.GetTarget();
                 return;
             }
 
