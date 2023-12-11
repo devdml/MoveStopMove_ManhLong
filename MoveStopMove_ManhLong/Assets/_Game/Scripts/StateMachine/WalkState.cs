@@ -17,7 +17,7 @@ public class WalkState : IState<Enemy>
     {
         if (t.target != null)
         {
-            t.ChangeAnim(Constant.ANIM_IDLE);
+            t.ChangeAnim(CacheString.ANIM_IDLE);
             t.agent.isStopped = true;
             t.agent.speed = 0;
             t.ChangeState(new AttackState());
@@ -37,10 +37,10 @@ public class WalkState : IState<Enemy>
 
         if (Vector3.Distance(t.agent.transform.position, newPos) < 1.1f)
         {
-            t.ChangeAnim(Constant.ANIM_IDLE);
+            t.ChangeAnim(CacheString.ANIM_IDLE);
         } else
         {
-            t.ChangeAnim(Constant.ANIM_RUN);
+            t.ChangeAnim(CacheString.ANIM_RUN);
         }
 
     }

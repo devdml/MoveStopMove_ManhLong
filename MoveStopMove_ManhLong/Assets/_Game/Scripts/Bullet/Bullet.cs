@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag(Constant.TAG_CHARACTER))
+        if(other.CompareTag(CacheString.TAG_CHARACTER))
         {
             Character charc = other.GetComponent<Character>();
 
@@ -47,7 +47,7 @@ public class Bullet : MonoBehaviour
             {
                 LeanPool.Despawn(gameObject);
                 charc.isDeath = true;
-                charc.ChangeAnim(Constant.ANIM_DEAD);
+                charc.ChangeAnim(CacheString.ANIM_DEAD);
                 character.listTarget.Remove(character.target);
                 character.target = null;
             }
