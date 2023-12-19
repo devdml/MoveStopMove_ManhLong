@@ -1,25 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HatItemBtn : MonoBehaviour
 {
     public HatType hatType;
+    public HatType hatTypebtn;
     public Button hatButton;
-    public  MyDataPlayer player;
+    public MyDataPlayer player;
+    public PlayerData playerData;
+    public ShopSkinHead shopSkinHead;
 
     private void Start()
     {
+        playerData = DataManager.Instance.playerData;
+
+        shopSkinHead = GetComponentManager.Instance.shopSkinHead;
         player = GetComponentManager.Instance.myDataPlayer;
-        hatButton.onClick.AddListener(SelectButton);
+        hatButton.onClick.AddListener(SelectPriceItem);
     }
 
-    public void SelectButton()
+    public void SelectPriceItem()
     {
-        Debug.Log(hatType.ToString());
-        player.hatType = hatType;
-        DataManager.Instance.changeHat(hatType);
-        player.SetDataPlayer();
+        if (playerData != null)
+        {
+            playerData.HatType = hatType;
+        }
+        
+        for (int i = 0; i < player.hatDataSO.hatItemDatas.Count; i++)
+        {
+            if (hatType == player.hatDataSO.hatItemDatas[i].HatType)
+            {
+                if (player.hatDataSO.hatItemDatas[i].isUnlock == false)
+                {
+                    shopSkinHead.textPrice.text = player.hatDataSO.hatItemDatas[i].price.ToString();
+                } else
+                {
+
+                }
+                
+                shopSkinHead.index = player.hatDataSO.hatItemDatas[i].id;
+            }
+        }
     }
 }

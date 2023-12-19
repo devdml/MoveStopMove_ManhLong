@@ -4,18 +4,21 @@ using UnityEngine.UI;
 public class ShopWeapon : MonoBehaviour
 {
     [SerializeField] private DataManager dataManager;
+    [SerializeField] private Character character;
     [SerializeField] private Transform pointSpawn;
     [SerializeField] private MyDataPlayer myDataPlayer;
     [SerializeField] private Button buttonNext;
     [SerializeField] private Button buttonPrevious;
     [SerializeField] private Button buttonSelect;
 
+    private PlayerData playerData;
     private int index;
 
     public WeaponView item;
 
     private void Start()
     {
+        playerData = dataManager.GetPlayerData();
         index = 0;
         buttonNext.onClick.AddListener(ChangeItemNext);
         buttonPrevious.onClick.AddListener(ChangeItemPrevious);
@@ -64,8 +67,17 @@ public class ShopWeapon : MonoBehaviour
 
     private void SelectItem()
     {
-        myDataPlayer.weaponType = item.weaponType;
-        myDataPlayer.SetDataPlayer();
+        playerData.WeaponType = item.weaponType;
+        myDataPlayer.weaponType = playerData.WeaponType;
+
+        if (myDataPlayer.myWeapon != null)
+        {
+            Destroy(myDataPlayer.myWeapon.gameObject);
+        }
+
+        myDataPlayer.myWeapon = Instantiate(myDataPlayer.weaponDataOS.weapons[index].weaponSkin, myDataPlayer.pointWeapon);
+        character.bulletPrefab = myDataPlayer.weaponDataOS.weapons[index].bulletPrefab;
+
         DataManager.Instance.ChangeWeapon(item.weaponType);
     }
 }

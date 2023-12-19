@@ -10,7 +10,7 @@ public class DataManager : Singleton<DataManager>
     string userPlayerDataKey = "userPlayerDataKey";
 
 
-    private void Start()
+    private void Awake()
     {
         Init();
     }

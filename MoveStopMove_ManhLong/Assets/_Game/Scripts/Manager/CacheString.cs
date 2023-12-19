@@ -4,6 +4,7 @@ public class CacheString
     public const string TAG_ENEMY = "Enemy";
     public const string TAG_CHARACTER = "Character";
     public const string TAG_BULLET = "Bullet";
+    public const string TAG_COIN = "MyCoin";
 
     public const string ANIM_IDLE = "idle";
     public const string ANIM_RUN = "run";

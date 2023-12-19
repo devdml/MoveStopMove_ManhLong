@@ -13,19 +13,23 @@ MonoBehaviour:
   m_Name: HatDataSO
   m_EditorClassIdentifier: 
   hatItemDatas:
-  - HatType: 0
-    price: 50
-    hatObj: {fileID: 1353604887538820043, guid: 28f20037a2c72ba499e91407e3eb6d87, type: 3}
+  - id: 0
+    HatType: 0
+    price: 20
+    hatView: {fileID: 8769430713195533689, guid: 28f20037a2c72ba499e91407e3eb6d87, type: 3}
     hatBtn: {fileID: 8419665978230310169, guid: 2abdd6ba3e9bfa84182e0adb0668cce4, type: 3}
-  - HatType: 1
+  - id: 1
+    HatType: 1
     price: 50
-    hatObj: {fileID: 2234726272841512519, guid: d1f9c5faf5bd7cb40af43218a60482cb, type: 3}
+    hatView: {fileID: 3433675877967310418, guid: d1f9c5faf5bd7cb40af43218a60482cb, type: 3}
     hatBtn: {fileID: 6075813076305769547, guid: b3743929d33e4064e94bf5692b924585, type: 3}
-  - HatType: 2
+  - id: 2
+    HatType: 2
     price: 70
-    hatObj: {fileID: 3265781568164781188, guid: f876c0fd05bea78418b6587fa46ce2f6, type: 3}
+    hatView: {fileID: 2594258941659119208, guid: f876c0fd05bea78418b6587fa46ce2f6, type: 3}
     hatBtn: {fileID: 6540607010400280716, guid: 4362e8539eca57d4bb29b9e2b9d87f29, type: 3}
-  - HatType: 3
+  - id: 3
+    HatType: 3
     price: 80
-    hatObj: {fileID: 3499038361560493040, guid: d19e9aea8754b264fa0cbfac71cc9863, type: 3}
+    hatView: {fileID: 1253491911640320077, guid: d19e9aea8754b264fa0cbfac71cc9863, type: 3}
     hatBtn: {fileID: 7458303233762358546, guid: 655d917172f9d3149a816e7412112f0e, type: 3}

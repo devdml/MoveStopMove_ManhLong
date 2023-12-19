@@ -5,25 +5,44 @@ public class MyDataPlayer : MonoBehaviour
 {
     public List<WeaponView> weaponList = new List<WeaponView>();
     public HatDataSO hatDataSO;
+    public WeaponDataOS weaponDataOS;
     public Transform pointWeapon;
     public Transform pointHat;
     private Character character;
     public WeaponType weaponType;
     public HatType hatType;
-    public GameObject myHat;
+    public HatView myHat;
+    public WeaponView myWeapon;
     private PlayerData playerData;
+    public ShopWeapon shopWeapon;
+    public ShopSkinHead shopSkinHead;
 
     private void Awake()
     {
         character = GetComponent<Character>();
+        playerData = DataManager.Instance.playerData;
+
+        if (playerData == null)
+        {
+            OnInit();
+        }
     }
-    private void OnEnable()
+
+    private void Start()
     {
         GetPlayerData();
         SetDataPlayer();
     }
 
     [ContextMenu("GetPlayerData")]
+
+    public void OnInit()
+    {
+        weaponType = WeaponType.axe_0;
+        hatType = HatType.arrow;
+        SavePlayerData();
+    }
+
     public void GetPlayerData()
     {
         playerData = DataManager.Instance.GetPlayerData();
@@ -38,18 +57,15 @@ public class MyDataPlayer : MonoBehaviour
 
     public void SetDataPlayer()
     {
-        WeaponItemData weaponItemData = DataManager.Instance.GetWeaponData(weaponType);
-
+        weaponType = playerData.WeaponType;
         hatType = playerData.HatType;
-        playerData.WeaponType = weaponType;
-        character.range = weaponItemData.rangeWeapon;
-        character.bulletPrefab = weaponItemData.bulletPrefab;
-       
-        for (int i = 0; i < weaponList.Count; i++)
+
+        for (int i = 0; i < weaponDataOS.weapons.Count; i++)
         {
-            if (weaponType == weaponList[i].weaponType)
+            if (weaponType == weaponDataOS.weapons[i].Type)
             {
-                Instantiate(weaponList[i], pointWeapon);
+                myWeapon = Instantiate(weaponDataOS.weapons[i].weaponSkin, pointWeapon);
+                character.bulletPrefab = weaponDataOS.weapons[i].bulletPrefab;
             }
         }
 
@@ -57,13 +73,41 @@ public class MyDataPlayer : MonoBehaviour
         {
             if (hatType == hatDataSO.hatItemDatas[i].HatType)
             {
-                if (myHat != null)
-                {
-                    Destroy(myHat.gameObject);
-                }
-
-                myHat = Instantiate(hatDataSO.hatItemDatas[i].hatObj, pointHat);
+                myHat = Instantiate(hatDataSO.hatItemDatas[i].hatView, pointHat);
             }
         }
     }
+
+    //public void SetDataPlayer()
+    //{
+    //    WeaponItemData weaponItemData = DataManager.Instance.GetWeaponData(weaponType);
+    //    playerData.WeaponType = weaponType;
+    //    character.range = weaponItemData.rangeWeapon;
+    //    character.bulletPrefab = weaponItemData.bulletPrefab;
+       
+    //    for (int i = 0; i < weaponList.Count; i++)
+    //    {
+    //        if (weaponType == weaponList[i].weaponType)
+    //        {
+    //            Instantiate(weaponList[i], pointWeapon);
+    //        }
+    //    }
+    //}
+
+    //public void ChangeHat()
+    //{
+    //    for (int i = 0; i < hatDataSO.hatItemDatas.Count; i++)
+    //    {
+    //        if (hatType == hatDataSO.hatItemDatas[i].HatType)
+    //        {
+    //            if (myHat != null)
+    //            {
+    //                Destroy(myHat.gameObject);
+    //            }
+
+    //            myHat = Instantiate(hatDataSO.hatItemDatas[i].hatObj, pointHat);
+    //            hatType = playerData.HatType;
+    //        }
+    //    }
+    //}
 }

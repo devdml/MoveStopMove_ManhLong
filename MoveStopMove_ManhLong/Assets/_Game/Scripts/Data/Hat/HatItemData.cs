@@ -5,8 +5,10 @@ using UnityEngine.UI;
 [Serializable]
 public class HatItemData
 {
+    public int id;
     public HatType HatType;
     public int price;
-    public GameObject hatObj;
+    public HatView hatView;
     public Button hatBtn;
+    public bool isUnlock;
 }

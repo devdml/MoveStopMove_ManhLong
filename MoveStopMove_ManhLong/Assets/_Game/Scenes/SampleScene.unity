@@ -404,6 +404,7 @@ GameObject:
   - component: {fileID: 88229459}
   - component: {fileID: 88229458}
   - component: {fileID: 88229457}
+  - component: {fileID: 88229460}
   m_Layer: 5
   m_Name: coin
   m_TagString: Untagged
@@ -425,8 +426,8 @@ RectTransform:
   m_Children:
   - {fileID: 1674862782}
   - {fileID: 1616248731}
-  m_Father: {fileID: 467063563}
-  m_RootOrder: 5
+  m_Father: {fileID: 1438484509}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -515,6 +516,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88229455}
   m_CullTransparentMesh: 1
+--- !u!114 &88229460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88229455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8faa3dc3da920e4dbbf291e40a8b882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &89484031
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dcaa5e10c065e04fac554088fe26310, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hatDataSO: {fileID: 0}
+  hatDataSO: {fileID: 11400000, guid: 8c4e4473e1de2b0479d6c59ba364d550, type: 2}
   weaponDataOS: {fileID: 11400000, guid: b4aff92dcd95d92429e21c8f6d3ebcf6, type: 2}
 --- !u!4 &89484033
 Transform:
@@ -1620,6 +1633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myDataPlayer: {fileID: 7923985563585313626}
+  shopSkinHead: {fileID: 525591551}
 --- !u!1 &395222556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,7 +2033,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -36.46901, y: 12}
+  m_AnchoredPosition: {x: 0.30000305, y: 12}
   m_SizeDelta: {x: -135.457, y: -29.702}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &445589766
@@ -2042,7 +2056,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: SELECT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2069,7 +2083,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 50.65
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2154,7 +2168,6 @@ RectTransform:
   - {fileID: 1515123241}
   - {fileID: 1616874834}
   - {fileID: 406946427}
-  - {fileID: 88229456}
   - {fileID: 604429318}
   m_Father: {fileID: 1151897019}
   m_RootOrder: 0
@@ -2418,9 +2431,9 @@ RectTransform:
   m_Father: {fileID: 282721200}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 367.1218, y: -99.049194}
   m_SizeDelta: {x: 230, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &479003095
@@ -2744,12 +2757,17 @@ MonoBehaviour:
   pantBtn: {fileID: 479003095}
   shieldBtn: {fileID: 1648721453}
   setBtn: {fileID: 1349994602}
+  buy: {fileID: 390758890}
   hatPanel: {fileID: 600978373}
   pantPanel: {fileID: 4250077}
   shieldPanel: {fileID: 734082448}
   setPanel: {fileID: 1052796107}
+  index: 0
   hatDataSO: {fileID: 11400000, guid: 8c4e4473e1de2b0479d6c59ba364d550, type: 2}
   HatPoint: {fileID: 600978374}
+  player: {fileID: 7923985563585313626}
+  textPrice: {fileID: 445589766}
+  hatTypebtn: 0
 --- !u!1 &555109282
 GameObject:
   m_ObjectHideFlags: 0
@@ -2783,7 +2801,7 @@ RectTransform:
   m_Children:
   - {fileID: 292473095}
   m_Father: {fileID: 1438484509}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2890,7 +2908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &580601673
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2908,7 +2926,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 108, y: 12}
+  m_AnchoredPosition: {x: 125.1, y: 12}
   m_SizeDelta: {x: 82.9131, y: 82.9131}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &580601674
@@ -3235,7 +3253,7 @@ RectTransform:
   m_Children:
   - {fileID: 1344719571}
   m_Father: {fileID: 467063563}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -3427,6 +3445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myMonet: 100
+  coinText: {fileID: 1674862783}
 --- !u!114 &666620310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5356,7 +5375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1151897019
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5371,7 +5390,7 @@ RectTransform:
   m_Children:
   - {fileID: 467063563}
   m_Father: {fileID: 1438484509}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -6143,9 +6162,9 @@ RectTransform:
   m_Father: {fileID: 282721200}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 856.61755, y: -99.049194}
   m_SizeDelta: {x: 230, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1349994602
@@ -6747,6 +6766,7 @@ RectTransform:
   m_Children:
   - {fileID: 155984799}
   - {fileID: 2001939635}
+  - {fileID: 88229456}
   - {fileID: 1151897019}
   - {fileID: 1544286525}
   - {fileID: 1951400076}
@@ -7613,7 +7633,7 @@ RectTransform:
   m_Children:
   - {fileID: 1448237248}
   m_Father: {fileID: 1438484509}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7694,6 +7714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataManager: {fileID: 89484032}
+  character: {fileID: 7140458357289300261}
   pointSpawn: {fileID: 1391326311}
   myDataPlayer: {fileID: 7923985563585313626}
   buttonNext: {fileID: 596597772}
@@ -8139,9 +8160,9 @@ RectTransform:
   m_Father: {fileID: 282721200}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 611.8696, y: -99.049194}
   m_SizeDelta: {x: 230, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1648721453
@@ -9262,7 +9283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1951400076
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9277,7 +9298,7 @@ RectTransform:
   m_Children:
   - {fileID: 1226440288}
   m_Father: {fileID: 1438484509}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -9979,7 +10000,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2125184539}
-  m_LocalRotation: {x: 0.33948094, y: 0.069988854, z: -0.025339464, w: 0.93766314}
+  m_LocalRotation: {x: 0.33948094, y: 0.069988854, z: -0.02533946, w: 0.93766314}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10158,9 +10179,9 @@ RectTransform:
   m_Father: {fileID: 282721200}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 122.37393, y: -99.049194}
   m_SizeDelta: {x: 230, y: 190}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2147411942
@@ -12285,11 +12306,15 @@ MonoBehaviour:
   - {fileID: -4963502758444383841, guid: 77f74897e4dfc5a409243bbcb0086917, type: 3}
   - {fileID: -7976503904843244935, guid: 0ae7bc0eebbcfa449b3911c2de463c72, type: 3}
   hatDataSO: {fileID: 11400000, guid: 8c4e4473e1de2b0479d6c59ba364d550, type: 2}
+  weaponDataOS: {fileID: 11400000, guid: b4aff92dcd95d92429e21c8f6d3ebcf6, type: 2}
   pointWeapon: {fileID: 6727320996219140915}
   pointHat: {fileID: 4039016462513678738}
   weaponType: 0
-  hatType: 0
+  hatType: 1
   myHat: {fileID: 0}
+  myWeapon: {fileID: 0}
+  shopWeapon: {fileID: 1544286529}
+  shopSkinHead: {fileID: 525591551}
 --- !u!1 &7974080053739587094
 GameObject:
   m_ObjectHideFlags: 0
