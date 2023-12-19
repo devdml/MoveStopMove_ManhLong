@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     private int maxEnemy;
     private int minEnemy;
 
-    private void Start()
+    private void Update()
     {
         SpawnEnemy();
     }
