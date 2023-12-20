@@ -1850,7 +1850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 8
-  fireRate: 1
+  fireRate: 0.7
   skinRotate: {fileID: 8465835909150391891}
   pointShooting: {fileID: 8465835908467296770}
   anim: {fileID: 8465835909150391918}

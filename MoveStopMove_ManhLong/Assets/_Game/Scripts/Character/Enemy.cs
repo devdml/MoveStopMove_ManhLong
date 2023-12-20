@@ -13,12 +13,15 @@ public class Enemy : Character
 
     void OnEnable()
     {
+        target = null;
         agent = GetComponent<NavMeshAgent>();
+        isDeath = false;
     }
 
     protected override void Start()
     {
         base.Start();
+
         moveSpeed = agent.speed;
         ChangeState(new WalkState());
     }
@@ -29,6 +32,7 @@ public class Enemy : Character
         {
             if (isDeath == true)
             {
+                agent.isStopped = true;
                 ChangeAnim(CacheString.ANIM_DEAD);
                 return;
             }
@@ -67,5 +71,9 @@ public class Enemy : Character
         Gizmos.DrawWireSphere(transform.position, wanderRadius);
     }
 
-   
+    private void OnDisable()
+    {
+        LevelManager.Instance.textMaxEnemy -= 1;
+        LevelManager.Instance.enemyList.Remove(this);
+    }
 }

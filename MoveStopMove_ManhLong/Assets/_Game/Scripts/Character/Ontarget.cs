@@ -25,4 +25,9 @@ public class Ontarget : MonoBehaviour
             target.SetActive(false);
         }
     }
+
+    private void OnDisable()
+    {
+        target.SetActive(false);
+    }
 }

@@ -6,11 +6,12 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody rb;
-    public WeaponType Type;
-
-
-    public Character character;
+    [SerializeField] LevelManager levelManager;
+    
     private Vector3 dir;
+
+    public WeaponType Type;
+    public Character character;
 
     private void Awake()
     {
@@ -46,8 +47,8 @@ public class Bullet : MonoBehaviour
             if (this.character != charc)
             {
                 LeanPool.Despawn(gameObject);
+                LeanPool.Despawn(charc.gameObject, 5f);
                 charc.isDeath = true;
-                charc.ChangeAnim(CacheString.ANIM_DEAD);
                 character.listTarget.Remove(character.target);
                 character.target = null;
             }

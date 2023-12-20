@@ -12,6 +12,8 @@ public class Character : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private WeaponItemData weaponItemData;
 
+    private float fireCountdown = 0f;
+
     public GetColliderRadius colliderRadius;
     public SphereCollider sphereCollider;
     public float moveSpeed;
@@ -24,11 +26,7 @@ public class Character : MonoBehaviour
     public bool isOut;
     public bool isAttack;
     public bool isDeath;
-
     public GameObject target;
-
-    private float fireCountdown = 0f;
-
 
     protected virtual void Awake()
     {
