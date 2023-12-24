@@ -33,11 +33,7 @@ public class HatItemBtn : MonoBehaviour
                 if (player.hatDataSO.hatItemDatas[i].isUnlock == false)
                 {
                     shopSkinHead.textPrice.text = player.hatDataSO.hatItemDatas[i].price.ToString();
-                } else
-                {
-
-                }
-                
+                } 
                 shopSkinHead.index = player.hatDataSO.hatItemDatas[i].id;
             }
         }

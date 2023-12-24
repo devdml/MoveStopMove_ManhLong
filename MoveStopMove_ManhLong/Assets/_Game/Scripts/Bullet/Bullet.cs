@@ -47,7 +47,6 @@ public class Bullet : MonoBehaviour
             if (this.character != charc)
             {
                 LeanPool.Despawn(gameObject);
-                LeanPool.Despawn(charc.gameObject, 5f);
                 charc.isDeath = true;
                 character.listTarget.Remove(character.target);
                 character.target = null;

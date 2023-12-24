@@ -24,7 +24,7 @@ public class MyDataPlayer : MonoBehaviour
 
         if (playerData == null)
         {
-            OnInit();
+            OnInit(); 
         }
     }
 

@@ -1,3 +1,4 @@
+using Lean.Pool;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,7 +22,6 @@ public class Enemy : Character
     protected override void Start()
     {
         base.Start();
-
         moveSpeed = agent.speed;
         ChangeState(new WalkState());
     }
@@ -32,8 +32,11 @@ public class Enemy : Character
         {
             if (isDeath == true)
             {
+                listTarget.Clear();
+                target = null;
                 agent.isStopped = true;
                 ChangeAnim(CacheString.ANIM_DEAD);
+                LeanPool.Despawn(gameObject, 2f);
                 return;
             }
             base.Update();

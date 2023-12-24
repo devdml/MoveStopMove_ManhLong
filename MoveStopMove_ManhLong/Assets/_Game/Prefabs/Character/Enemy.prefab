@@ -1501,7 +1501,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8465835908931971673
 GameObject:
@@ -1739,6 +1739,7 @@ GameObject:
   - component: {fileID: 8465835909150391918}
   - component: {fileID: 8465835909150391919}
   - component: {fileID: 8465835909150391912}
+  - component: {fileID: 7771658295208950219}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Character
@@ -1828,7 +1829,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 200
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -1850,7 +1851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 8
-  fireRate: 0.7
+  fireRate: 0.5
   skinRotate: {fileID: 8465835909150391891}
   pointShooting: {fileID: 8465835908467296770}
   anim: {fileID: 8465835909150391918}
@@ -1875,6 +1876,32 @@ MonoBehaviour:
   skin: {fileID: 8465835908833178980}
   wanderTimer: 5
   wanderRadius: 20
+--- !u!114 &7771658295208950219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8465835909150391913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08470e2a2343b14e90107557e5208ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visible: 1
+  renderers: []
+  style:
+    texture: {fileID: 2800000, guid: 1d3693e8192748a4c85ac72d38c6532a, type: 3}
+    color: {r: 0.30309716, g: 0.7349467, b: 0.9339623, a: 1}
+    width: 70
+    height: 70
+  showArrow: 1
+  arrowStyle:
+    texture: {fileID: 2800000, guid: b14d512c127ad2545b2ce2126a7690c6, type: 3}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    margin: 0
+    width: 64
+    height: 64
 --- !u!1 &8465835909171362163
 GameObject:
   m_ObjectHideFlags: 0

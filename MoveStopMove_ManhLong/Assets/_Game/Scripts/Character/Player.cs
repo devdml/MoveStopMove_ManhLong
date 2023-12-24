@@ -21,6 +21,11 @@ public class Player : Character
 
     protected override void Update()
     {
+        if (isDeath == true)
+        {
+            IsDead();
+        }
+
         if (GameManager.Instance.IsStage(GameState.GamePlay))
         {
             Joystick();
@@ -56,5 +61,10 @@ public class Player : Character
             rb.velocity = Vector3.zero;
             isMove = false;
         }
+    }
+
+    public void IsDead()
+    {
+        LevelManager.Instance.playerIsDead = true;
     }
 }

@@ -17,9 +17,10 @@ public class WalkState : IState<Enemy>
     {
         if (t.target != null)
         {
-            t.ChangeAnim(CacheString.ANIM_IDLE);
             t.agent.isStopped = true;
+            t.agent.SetDestination(Vector3.positiveInfinity);
             t.agent.speed = 0;
+            t.ChangeAnim(CacheString.ANIM_IDLE);
             t.ChangeState(new AttackState());
         }
         else
@@ -35,12 +36,16 @@ public class WalkState : IState<Enemy>
             }
         }
 
-        if (Vector3.Distance(t.agent.transform.position, newPos) < 1.1f)
+        if (Vector3.Distance(t.agent.transform.position, newPos) < 0.1f)
         {
             t.ChangeAnim(CacheString.ANIM_IDLE);
-        } else
+        }
+        else
         {
-            t.ChangeAnim(CacheString.ANIM_RUN);
+            if (t.target == null)
+            {
+                t.ChangeAnim(CacheString.ANIM_RUN);
+            }
         }
 
     }

@@ -1,4 +1,5 @@
 using Lean.Pool;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -64,7 +65,7 @@ public class Character : MonoBehaviour
         //sphereCollider.radius = range;
     }
 
-    private void SpawnBullet()
+    public void SpawnBullet()
     {
         if (target != null)
         {
@@ -123,6 +124,19 @@ public class Character : MonoBehaviour
         return target;
     }
 
+    //public IEnumerator ShootTimer()
+    //{
+    //    yield return new WaitForSeconds(1);
+    //    if (fireCountdown <= 0)
+    //    {
+    //        SpawnBullet();
+    //        Attack();
+    //        fireCountdown = 1f / fireRate;
+    //    }
+
+    //    fireCountdown -= Time.deltaTime;
+
+    //}
 
     public void ShootTimer()
     {
@@ -136,6 +150,12 @@ public class Character : MonoBehaviour
         fireCountdown -= Time.deltaTime;
     }
 
+    public void PlayerAttack()
+    {
+        SpawnBullet();
+        Attack();
+    }
+
     public void RotateToTarget()
     {
         if (target != null)
@@ -144,7 +164,7 @@ public class Character : MonoBehaviour
             if (dir != Vector3.zero)
             {
                 Quaternion lookRotation = Quaternion.LookRotation(dir);
-                Vector3 rotation = Quaternion.Lerp(skinRotate.rotation, lookRotation, 15f * Time.deltaTime).eulerAngles;
+                Vector3 rotation = Quaternion.Lerp(skinRotate.rotation, lookRotation, 20f * Time.deltaTime).eulerAngles;
                 skinRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
             }
         }
@@ -176,7 +196,7 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void Attack()
+    public void Attack()
     {
         isAttack = true;
         offWeaponView.SetActive(false);

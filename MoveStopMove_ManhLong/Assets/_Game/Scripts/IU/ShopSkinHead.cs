@@ -83,6 +83,7 @@ public class ShopSkinHead : MonoBehaviour
 
     public void BuyItem()
     {
+        
         hatTypebtn = playerData.HatType;    
 
         for (int i = 0; i < player.hatDataSO.hatItemDatas.Count; i++)

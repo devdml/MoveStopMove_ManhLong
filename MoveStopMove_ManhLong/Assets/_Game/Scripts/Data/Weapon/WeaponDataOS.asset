@@ -23,11 +23,11 @@ MonoBehaviour:
     price: 50
     speedWeapon: 1.5
     rangeWeapon: 8
-    bulletPrefab: {fileID: 1910082812334194638, guid: 54edcfc4da740e84faea7f98cd994c1f, type: 3}
+    bulletPrefab: {fileID: 1861429484982371486, guid: 54edcfc4da740e84faea7f98cd994c1f, type: 3}
     weaponSkin: {fileID: -4963502758444383841, guid: 77f74897e4dfc5a409243bbcb0086917, type: 3}
   - Type: 2
     price: 110
     speedWeapon: 2
     rangeWeapon: 9
-    bulletPrefab: {fileID: 2231219986299186580, guid: 56a0b3ed8fafcd149a26f83774ad26e8, type: 3}
+    bulletPrefab: {fileID: 1295988547910313206, guid: 56a0b3ed8fafcd149a26f83774ad26e8, type: 3}
     weaponSkin: {fileID: -7976503904843244935, guid: 0ae7bc0eebbcfa449b3911c2de463c72, type: 3}
